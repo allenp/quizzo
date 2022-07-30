@@ -38,7 +38,7 @@ function register_quizzo_meta_boxes() {
 
 	add_meta_box(
 		'quizzo_scores',
-		__( 'Scores', PLUGIN_DOMAIN ),
+		__( 'User\'s Quiz Performance', PLUGIN_DOMAIN ),
 		__NAMESPACE__ . '\quiz_metabox_scores_cb',
 		'score'
 	);
@@ -119,8 +119,67 @@ function quiz_metabox_scores_cb( $post ) {
 	// Get all scores
 	$scores_metadata = get_post_meta( $post->ID );
 
+	// Get User
+	echo sprintf( '<h2><strong>User:</strong><br/>%1$s</h2>', esc_html( $scores_metadata['score_author'][0] ) );
+
+	// Get Total Score
+	echo sprintf( '<h2><strong>Total Score:</strong><br/>%1$s</h2>', esc_html( $scores_metadata['score_value'][0] ) );
+
 	// Loop through scores meta data
-	foreach( $scores_metadata as $key => $value ) {
-		echo $key . ' : ' . $value[0] . '<br/>';
+	foreach ( $scores_metadata as $key => $value ) {
+		//echo $key . ' : ' . $value[0];
+
+		if ( strpos( $key, 'score_question_' ) !== false ) {
+			// Get Question ID
+			$question_id = explode( '_', $key )[2];
+
+			// Reset array and variable values...
+			$option_array = array(1, 2, 3, 4);
+			$options = ''; $question = '';
+
+			// Get Score Icon class
+			$score_icon_class = $value[0] === 'Passed' ? 'dashicons dashicons-yes' : 'dashicons dashicons-no';
+
+			// Get Score Color class
+			$score_color_class = $value[0] === 'Passed' ? 'rebeccapurple' : 'red';
+
+			// Get Question
+			$question = sprintf(
+				'<h2 style="color: %3$s">
+					<strong>%1$s</strong><br/>
+					(%4$s) <span class="%2$s"></span> -
+					Question\'s Answer: %5$s | User\'s Answer: %6$s
+				</h2>',
+				esc_html( get_the_title( $question_id ) ),
+				$score_icon_class,
+				$score_color_class,
+				$value[0],
+				get_answer_option( get_post_meta( $question_id, 'quizzo_answer', true ) ),
+				get_answer_option( get_post_meta( $post->ID, 'score_user_answer_' . $question_id, true ) )
+			);
+
+			// Get Options
+			foreach ( $option_array as $key => $value ) {
+				$options .= sprintf( '<li>%1$s</li>', esc_html( get_post_meta( $question_id, 'quizzo_option_' . $value, true ) ) );
+			}
+
+			// Return all questions
+			echo $question . '<ol style="margin-top: 0; padding: 0;">' . $options . '</ol>';
+		}
 	}
+}
+
+function get_answer_option( $answer ) {
+	// Define compare array
+	$answer_compare = array(
+		1 => 'A',
+		2 => 'B',
+		3 => 'C',
+		4 => 'D'
+	);
+
+	// Safely typecast int
+	$answer = intval( $answer );
+
+	return $answer_compare[$answer];
 }
