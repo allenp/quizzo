@@ -33,7 +33,7 @@ add_action( 'init', __NAMESPACE__ . '\register_quizzo_cpts' );
 add_action( 'admin_menu', __NAMESPACE__ . '\register_quizzo_menu', 9 );
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_quizzo_css' );
 add_action( 'add_meta_boxes', __NAMESPACE__ . '\register_quizzo_meta_boxes' );
-add_action( 'publish_question', __NAMESPACE__ . 'register_quizzo_save_meta_box' );
+add_action( 'publish_question', __NAMESPACE__ . '\register_quizzo_save_meta_box' );
 
 add_filter( 'manage_quiz_posts_columns', __NAMESPACE__ . '\register_quiz_columns' );
 add_action( 'manage_quiz_posts_custom_column' , __NAMESPACE__ . '\register_quiz_questions_column', 10, 2 );
