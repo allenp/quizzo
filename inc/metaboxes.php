@@ -51,6 +51,9 @@ function register_quizzo_meta_boxes() {
  * @return void
  */
 function quiz_metabox_answer_cb( $post ) {
+	// CB global options
+	global $answers, $quiz_answer;
+
 	// Get ID of field
 	$quiz_answer = get_post_meta( $post->ID, 'quizzo_answer', true );
 
@@ -69,8 +72,7 @@ function quiz_metabox_answer_cb( $post ) {
  */
 function quiz_metabox_options_cb( $post ) {
 	// CB global options
-	global $quiz_options;
-	global $quiz_id;
+	global $quiz_options, $quiz_id;
 
 	// Get Options for answers
 	$quiz_options[1] = get_post_meta( $post->ID, 'quizzo_option_1', true );
