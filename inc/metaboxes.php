@@ -68,18 +68,21 @@ function quiz_metabox_answer_cb( $post ) {
  * @return void
  */
 function quiz_metabox_options_cb( $post ) {
+	// CB global options
+	global $quiz_options;
+	global $quiz_id;
+
 	// Get Options for answers
-	$quiz_option_1 = get_post_meta( $post->ID, 'quizzo_option_1', true );
-	$quiz_option_2 = get_post_meta( $post->ID, 'quizzo_option_2', true );
-	$quiz_option_3 = get_post_meta( $post->ID, 'quizzo_option_3', true );
-	$quiz_option_4 = get_post_meta( $post->ID, 'quizzo_option_4', true );
+	$quiz_options[1] = get_post_meta( $post->ID, 'quizzo_option_1', true );
+	$quiz_options[2] = get_post_meta( $post->ID, 'quizzo_option_2', true );
+	$quiz_options[3] = get_post_meta( $post->ID, 'quizzo_option_3', true );
+	$quiz_options[4] = get_post_meta( $post->ID, 'quizzo_option_4', true );
 
 	// Get Quiz ID
 	$quiz_id = $_GET['quiz_id'] ?: get_post_meta( $post->ID, 'quizzo_quiz_id', true );
 
 	// Get Template part
 	load_template( dirname( __DIR__ ) . '/partials/cb-options.php' );
-
 }
 
 /**
