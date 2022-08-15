@@ -10,7 +10,7 @@ namespace Quizzo;
 function register_quizzo_css() {
 	wp_enqueue_style(
 		PLUGIN_SLUG,
-		plugin_dir_url( __FILE__ ) . './assets/css/dist/quizzo.css'
+		plugin_dir_url( __DIR__ ) . './assets/css/dist/quizzo.css'
 	);
 }
 
