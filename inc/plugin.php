@@ -29,7 +29,7 @@ function quizzo_dashboard_cb() {
  *
  * @return void
  */
-function my_rewrite_flush() {
+function quizzo_rewrite_flush() {
 	// Register CPTs
     register_quizzo_cpts();
 
