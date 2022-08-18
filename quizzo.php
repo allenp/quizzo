@@ -34,8 +34,11 @@ add_action( 'admin_menu', __NAMESPACE__ . '\register_quizzo_menu', 9 );
 add_action( 'add_meta_boxes', __NAMESPACE__ . '\register_quizzo_meta_boxes' );
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_quizzo_css' );
 
-add_filter( 'manage_quiz_posts_columns', 'register_quiz_columns' );
-add_action( 'manage_quiz_posts_custom_column' , 'register_quiz_questions_column', 10, 2 );
+add_filter( 'manage_quiz_posts_columns', __NAMESPACE__ . 'register_quiz_columns' );
+add_action( 'manage_quiz_posts_custom_column' , __NAMESPACE__ . 'register_quiz_questions_column', 10, 2 );
 
 // Plugin shortcode
 add_shortcode( 'quizzo', __NAMESPACE__ . '\quizzo_shortcode' );
+
+// Rewrite flush
+register_activation_hook( __FILE__, __NAMESPACE__ . 'quizzo_rewrite_flush' );
