@@ -23,3 +23,16 @@ function quizzo_dashboard_cb() {
 	// Get Template part
 	load_template( dirname( __DIR__ ) . '/partials/cb-dashboard.php' );
 }
+
+/**
+ * Flush Rewrite Cache
+ *
+ * @return void
+ */
+function my_rewrite_flush() {
+	// Register CPTs
+    register_quizzo_cpts();
+
+	// Flush Rewrite Cache
+    flush_rewrite_rules();
+}
