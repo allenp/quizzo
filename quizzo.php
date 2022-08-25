@@ -37,16 +37,4 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_quizzo_css' );
 // Plugin shortcode
 add_shortcode( 'quizzo', __NAMESPACE__ . '\quizzo_shortcode' );
 
-/**
- * Enqueue Quizzo Plugin CSS file
- *
- * @return void
- */
-function register_quizzo_css() {
-	wp_enqueue_style(
-		PLUGIN_SLUG,
-		plugin_dir_url( __FILE__ ) . './assets/css/dist/quizzo.css'
-	);
-}
-
 
