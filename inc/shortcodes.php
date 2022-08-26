@@ -60,6 +60,6 @@ function quizzo_shortcode( $atts ) {
 
     } else {
 		// Get Template part
-		load_template( dirname( __DIR__ ) . '/partials/shortcode.php' );
+		load_template( dirname( __DIR__ ) . '/partials/cb-shortcode.php' );
 	}
 }
