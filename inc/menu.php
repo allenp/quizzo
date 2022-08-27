@@ -24,6 +24,6 @@ function register_quizzo_menu() {
 		'Dashboard',
 		PLUGIN_ROLE,
 		PLUGIN_SLUG,
-		'quizzo_plugin_page',
+		__NAMESPACE__ . '\quizzo_dashboard_cb',
 	);
 }
