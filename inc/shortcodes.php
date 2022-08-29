@@ -28,18 +28,21 @@ function quizzo_shortcode( $atts ) {
 
     // If Submission
     if ( isset( $_POST['submit'] ) ) {
-
+		// User score
         $score = 0;
 
+		// Save Score
         $score_id = wp_insert_post( array(
             'post_type'   => 'score',
             'post_status' => 'publish',
             'post_title'  =>  $user . ' - ' . get_the_title(8)
         ) );
 
+		// Update Score information
         update_post_meta( $score_id, 'score_quiz', get_the_title(8) );
         update_post_meta( $score_id, 'score_author', $user );
 
+		// Calculate Scores
         foreach ( $questions as $question ) {
             $answer = 'user_answer_' . $question->ID;
             if ( get_post_meta( $question->ID, 'quizzo_answer', true ) === $_POST[$answer] ) {
@@ -52,39 +55,11 @@ function quizzo_shortcode( $atts ) {
 
         update_post_meta( $score_id, 'score_value', $score );
 
+		// Display result
         echo '<h2 style="background: #fafafa; padding: 1em; margin-top: 0; text-align: center; color: rebeccapurple;">' . 'Congratulations! <span style="color: #000; ">You have scored a total value of </span>' . number_format( ( $score / count ( $questions ) ) * 100, 2) . '%' . '</h2>';
+
     } else {
-    ob_start();
-?>
-    <form method="POST" action="./">
-        <ul class="quizzo_shortcode">
-        <?php foreach ( $questions as $question ) : ?>
-            <li>
-                <h2><?php echo esc_html( $question->post_title ); ?></h2>
-                <ol>
-                    <li>
-                        <input type="radio" name="user_answer_<?php echo $question->ID; ?>" value="1">
-                        <?php echo esc_html( get_post_meta( $question->ID, 'quizzo_option_1', true ) ); ?>
-                    </li>
-                    <li>
-                        <input type="radio" name="user_answer_<?php echo $question->ID; ?>" value="2">
-                        <?php echo esc_html( get_post_meta( $question->ID, 'quizzo_option_2', true ) ); ?>
-                    </li>
-                    <li>
-                        <input type="radio" name="user_answer_<?php echo $question->ID; ?>" value="3">
-                        <?php echo esc_html( get_post_meta( $question->ID, 'quizzo_option_3', true ) ); ?>
-                    </li>
-                    <li>
-                        <input type="radio" name="user_answer_<?php echo $question->ID; ?>" value="4">
-                        <?php echo esc_html( get_post_meta( $question->ID, 'quizzo_option_4', true ) ); ?>
-                    </li>
-                </ol>
-            </li>
-        <?php endforeach; ?>
-        </ul>
-        <button type="submit" name="submit" class="quizzo_submit">Finish Test</button>
-    </form>
-<?php
-    return ob_get_clean();
-    }
+		// Get Template part
+		load_template( dirname( __DIR__ ) . '/partials/shortcode.php' );
+	}
 }
