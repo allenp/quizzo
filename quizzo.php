@@ -28,11 +28,14 @@ foreach( glob( __DIR__ . "/inc/*.php" ) as $file ) {
 	require $file;
 }
 
-// Applied hooks
+// Plugin hooks
 add_action( 'init', __NAMESPACE__ . '\register_quizzo_cpts' );
 add_action( 'admin_menu', __NAMESPACE__ . '\register_quizzo_menu', 9 );
 add_action( 'add_meta_boxes', __NAMESPACE__ . '\register_quizzo_meta_boxes' );
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_quizzo_css' );
+
+// Plugin shortcode
+add_shortcode( 'quizzo', __NAMESPACE__ . '\quizzo_shortcode' );
 
 /**
  * Enqueue Quizzo Plugin CSS file
