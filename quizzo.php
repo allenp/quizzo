@@ -25,7 +25,7 @@ define( 'PLUGIN_DOMAIN', 'quizzo' );
 
 // Get all files
 foreach( glob( __DIR__ . "/inc/*.php" ) as $file ) {
-    require $file;
+	require $file;
 }
 
 // Applied hooks
@@ -40,10 +40,10 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_quizzo_css' );
  * @return void
  */
 function register_quizzo_css() {
-    wp_enqueue_style(
-        PLUGIN_SLUG,
-        plugin_dir_url( __FILE__ ) . './assets/css/dist/quizzo.css'
-    );
+	wp_enqueue_style(
+		PLUGIN_SLUG,
+		plugin_dir_url( __FILE__ ) . './assets/css/dist/quizzo.css'
+	);
 }
 
 
