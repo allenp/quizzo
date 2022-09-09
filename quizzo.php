@@ -24,6 +24,7 @@ define( 'PLUGIN_DOMAIN', 'quizzo' );
  * Applied Hooks
  */
 add_action( 'init', 'register_quizzo_cpts' );
+add_action( 'admin_menu', 'register_quizzo_menu', 9 );
 add_action( 'admin_enqueue_scripts', 'register_quizzo_css' );
 
 /**
@@ -103,5 +104,31 @@ function register_quizzo_cpts() {
             'supports'     => array( 'title', 'thumbnail' ),
             'show_in_rest' => false,
         )
+    );
+}
+
+/**
+ * Register Quizzo menu
+ *
+ * @return void
+ */
+function register_quizzo_menu() {
+    add_menu_page(
+        __( 'Quizzo', PLUGIN_DOMAIN ),
+        'Quizzo',
+        PLUGIN_ROLE,
+        PLUGIN_SLUG,
+        false,
+        'dashicons-edit-page',
+        ''
+    );
+
+    add_submenu_page(
+        PLUGIN_SLUG,
+        'Quizzo',
+        'Dashboard',
+        PLUGIN_ROLE,
+        PLUGIN_SLUG,
+        'quizzo_plugin_page',
     );
 }
