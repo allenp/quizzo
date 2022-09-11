@@ -16,3 +16,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'PLUGIN_SLUG', 'quizzo' );
+define( 'PLUGIN_ROLE', 'manage_options' );
+define( 'PLUGIN_DOMAIN', 'quizzo' );
