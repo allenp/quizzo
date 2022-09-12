@@ -1,0 +1,81 @@
+.quizzo {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+  padding: 40px 40px 40px 190px;
+}
+.quizzo h1 {
+  font-size: 42px;
+}
+.quizzo p {
+  font-size: 18px;
+  font-weight: 350;
+}
+.quizzo .quizzo_column {
+  display: flex;
+  justify-content: flex-start;
+  gap: 25px;
+}
+.quizzo .quizzo_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+  width: calc(25% - 25px);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(51, 51, 51, 0.1);
+  flex-direction: column;
+}
+.quizzo .quizzo_card h2 {
+  font-size: 32px;
+  margin-bottom: 0;
+}
+.quizzo .quizzo_card_notes {
+  width: calc(25% - 25px);
+  padding: 0 40px;
+}
+.quizzo .quizzo_card_notes h2 {
+  font-size: 24px;
+}
+.quizzo .quizzo_card_notes ul {
+  list-style-type: disc;
+  font-size: 18px;
+  margin-left: 1em;
+}
+.quizzo .quizzo_card_notes ul li {
+  margin-bottom: 1em;
+}
+.quizzo_admin_question {
+  padding: 10px;
+  border-radius: 0px;
+  transition: all 0.6s;
+  margin: 0;
+  padding-top: 7.5px;
+  cursor: pointer;
+}
+.quizzo_admin_question:hover {
+  background: #EFEFEF;
+}
+.quizzo_admin_question a {
+  text-decoration: none;
+}
+.quizzo_admin_question a h2 {
+  color: #2271b1;
+  margin-top: -15px;
+}
+.quizzo_admin_question a ol li {
+  color: #000;
+}
+.quizzo_select, .quizzo_textfield {
+  width: 100%;
+  margin-top: 5px;
+}
+@media only screen and (max-width: 959px) {
+  .quizzo {
+    padding: 40px 40px 40px 70px;
+  }
+}
