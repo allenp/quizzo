@@ -13,8 +13,8 @@ const paths = {
 		js: './assets/js/src/**/*.js'
 	},
 	dest: {
-		css: './assets/css/dist/css',
-		js: './assets/js/dist/js'
+		css: './assets/css/dist',
+		js: './assets/js/dist'
 	}
 }
 
