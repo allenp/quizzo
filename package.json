@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/chigozieorunta/quizzo/issues"
   },
-  "homepage": "https://github.com/chigozieorunta/quizzo#readme"
+  "homepage": "https://github.com/chigozieorunta/quizzo#readme",
+  "devDependencies": {
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.54.9"
+  }
 }
