@@ -8,7 +8,7 @@
 
 <p>
 	<label for="option<?php echo $key; ?>">Option <?php echo $key; ?></label><br/>
-	<input type="text" class="quizzo_textfield" name="quizzo_option_<?php echo $key; ?>" value="<?php echo esc_html( $value ); ?>"/>
+	<input type="text" class="widefat" name="quizzo_option_<?php echo $key; ?>" value="<?php echo esc_html( $value ); ?>"/>
 </p>
 
 <?php endforeach; ?>
