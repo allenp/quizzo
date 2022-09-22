@@ -31,9 +31,17 @@ function register_quizzo_meta_boxes() {
 
 	add_meta_box(
 		'quizzo_questions',
-		__( 'Questions', PLUGIN_DOMAIN ),
+		__( 'Quiz Questions', PLUGIN_DOMAIN ),
 		__NAMESPACE__ . '\quiz_metabox_questions_cb',
 		'quiz'
+	);
+
+	add_meta_box(
+		'quizzo_shortcode',
+		__( 'Quiz Shortcode', PLUGIN_DOMAIN ),
+		__NAMESPACE__ . '\quiz_metabox_shortcode_cb',
+		'quiz',
+		'side'
 	);
 
 	add_meta_box(
@@ -42,6 +50,16 @@ function register_quizzo_meta_boxes() {
 		__NAMESPACE__ . '\quiz_metabox_scores_cb',
 		'score'
 	);
+}
+
+/**
+ * Shortcode Callback Method
+ *
+ * @param object $post
+ * @return void
+ */
+function quiz_metabox_shortcode_cb( $post ) {
+	echo '<h2 style="padding-left: 0; padding-bottom: 0;">[quizzo id=' . $post->ID. ']</h2>';
 }
 
 /**
