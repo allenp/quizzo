@@ -8,9 +8,20 @@ namespace Quizzo;
  * @return void
  */
 function register_quizzo_css() {
+	wp_enqueue_script(
+		PLUGIN_SLUG,
+		plugin_dir_url( __DIR__ ) . './assets/js/dist/quizzo.js',
+		array('jquery')
+	);
+
 	wp_enqueue_style(
 		PLUGIN_SLUG,
 		plugin_dir_url( __DIR__ ) . './assets/css/dist/quizzo.css'
+	);
+
+	wp_enqueue_style(
+		'Nunito',
+		'https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap'
 	);
 }
 
@@ -70,4 +81,13 @@ function register_quizzo_save_meta_box( $post_id ) {
 
 	// Update Answer
 	update_post_meta( $post_id, 'quizzo_answer', $_POST['quizzo_answer'] );
+}
+
+/**
+ * Register user's session
+ *
+ * @return void
+ */
+function register_user_session() {
+  if ( ! session_id() ) session_start();
 }
