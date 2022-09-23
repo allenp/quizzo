@@ -29,12 +29,20 @@ foreach( glob( __DIR__ . "/inc/*.php" ) as $file ) {
 }
 
 // Plugin hooks
+add_action( 'init', 'register_quizzo_product_type' );
+add_filter( 'product_type_selector', 'add_quizzo_product_type' );
+add_action( 'woocommerce_quizzo_add_to_cart', 'add_to_cart_button' );
+
 add_action( 'init', __NAMESPACE__ . '\register_quizzo_cpts' );
 add_action( 'init', __NAMESPACE__ . '\register_user_session' );
+
 add_action( 'admin_menu', __NAMESPACE__ . '\register_quizzo_menu', 9 );
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_quizzo_css' );
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_quizzo_admin_css' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\register_quizzo_shortcode_css' );
+
 add_action( 'add_meta_boxes', __NAMESPACE__ . '\register_quizzo_meta_boxes' );
-add_action( 'publish_question', __NAMESPACE__ . '\register_quizzo_save_meta_box' );
+add_action( 'publish_quiz', __NAMESPACE__ . '\register_quizzo_quiz_save_meta_box' );
+add_action( 'publish_question', __NAMESPACE__ . '\register_quizzo_question_save_meta_box' );
 
 add_filter( 'manage_quiz_posts_columns', __NAMESPACE__ . '\register_quiz_columns' );
 add_action( 'manage_quiz_posts_custom_column' , __NAMESPACE__ . '\register_quiz_questions_column', 10, 2 );
