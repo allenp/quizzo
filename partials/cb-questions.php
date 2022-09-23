@@ -1,7 +1,7 @@
 <?php global $questions; ?>
 
 <div>
-	<a href="<?php echo home_url(); ?>/wp-admin/post-new.php?post_type=question&quiz_id=<?php echo $post->ID; ?>" class="button button-primary button-large" style="margin-top: 5px;">Add New Question</a>
+    <a href="<?php echo home_url(); ?>/wp-admin/post-new.php?post_type=question&quiz_id=<?php echo $post->ID; ?>" class="button button-primary button-large" style="margin-top: 5px;">Add New Question</a>
 </div>
 
 <ul>
@@ -22,5 +22,3 @@
 	</li>
 	<?php endforeach; ?>
 </ul>
-
-<?php return ob_get_clean(); ?>
