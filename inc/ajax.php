@@ -8,15 +8,52 @@ namespace Quizzo;
  * @return void
  */
 function save_user_answer() {
-	//Get IDs
+	// Get IDs
 	$answer_id   = $_POST['answer_id'];
 	$question_id = $_POST['question_id'];
 
-	//Let us see if the answer is correct.
+	// Let us see if the answer is correct.
 	$answer  = get_post_meta( $question_id, 'quizzo_answer', true );
 	$compare = $answer === $answer_id ? 1 : 0;
 
-	//Get next question
+	// Get current user
+	$current_user = wp_get_current_user();
+	$user = $current_user->display_name ?: $current_user->user_login;
+
+	// Check if a score ID has been created
+	if ( ! $_SESSION['question_counter'] ) {
+		// Save Score
+        $score_id = wp_insert_post( array(
+            'post_type'   => 'score',
+            'post_status' => 'publish',
+            'post_title'  =>  $user . ' - ' . get_the_title( $_SESSION['quiz_id'] )
+        ) );
+
+		// Save important details for scores
+		update_post_meta( $score_id, 'score_quiz_id', $_SESSION['quiz_id'] );
+		update_post_meta( $score_id, 'score_user_id', $current_user->ID );
+		update_post_meta( $score_id, 'score_user_name', $user );
+		update_post_meta( $score_id, 'score_user_email', $current_user->user_email );
+		update_post_meta( $score_id, 'score_total_questions', count( $_SESSION['questions_ids'] ) );
+
+		// Save to score_id, if its the first time
+		$_SESSION['score_id'] = $score_id;
+	}
+
+	// Save Question Status (Right or Wrong) depending on user answer
+	update_post_meta( $_SESSION['score_id'], 'score_question_' . $question_id, $compare );
+
+	// Save User's exact answer - A, B, C, D
+	update_post_meta( $_SESSION['score_id'], 'score_answer_' . $question_id, $answer_id );
+
+	//Update total score
+	if ( $compare ) {
+		$total = get_post_meta( $_SESSION['score_id'], 'score_total', true );
+		$total = $total + 1;
+		update_post_meta( $_SESSION['score_id'], 'score_total', $total );
+	}
+
+	// Get next question
 	if ( isset( $_SESSION['questions_ids'] ) ) {
 		$index = array_search( $question_id, $_SESSION['questions_ids'] );
 
@@ -26,11 +63,16 @@ function save_user_answer() {
 		}
 	}
 
-	//Prepare result
+	// Get percentage score
+	$correct_questions = get_post_meta( $_SESSION['score_id'], 'score_total', true );
+	$total_number_of_questions = get_post_meta( $_SESSION['score_id'], 'score_total_questions', true );
+	$_SESSION['percentage'] = number_format( ( $correct_questions / $total_number_of_questions ) * 100, 2);
+
+	// Prepare result
 	$result['status']   = $compare;
 	$result['question'] = $answer;
 
-	//Encode and send
+	// Encode and send
 	$result = json_encode($result);
 	echo $result;
 
