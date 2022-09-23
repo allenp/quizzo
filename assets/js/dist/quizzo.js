@@ -23,9 +23,6 @@ jQuery(document).ready(function ($) {
 				answer_id: answerID
 			},
 			success: function (msg) {
-				console.log('Your index is ', msg.index);
-				console.log('Your counter ID is', msg.counter);
-
 				// Display feedback
 				$('.quizzo_shortcode #status').slideDown('fast', 'swing');
 
@@ -56,7 +53,6 @@ jQuery(document).ready(function ($) {
 			}
 		});
 
-		// Change button
 	})
 
 })
