@@ -24,7 +24,7 @@ function register_quizzo_cpts() {
 			'has_archive'  => true,
 			'show_in_menu' => PLUGIN_SLUG,
 			'supports'     => array( 'title', 'thumbnail' ),
-			'taxonomies'   => array( 'category' ),
+			//'taxonomies'   => array( 'category' ),
 			'show_in_rest' => false
 		)
 	);
