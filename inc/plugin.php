@@ -3,20 +3,32 @@
 namespace Quizzo;
 
 /**
- * Enqueue Quizzo Plugin CSS file
+ * Enqueue Quizzo Plugin Admin CSS
  *
  * @return void
  */
-function register_quizzo_css() {
+function register_quizzo_admin_css() {
+	wp_enqueue_style(
+		PLUGIN_SLUG,
+		plugin_dir_url( __DIR__ ) . './assets/css/dist/quizzo-admin.css'
+	);
+}
+
+/**
+ * Enqueue Quizzo Plugin Shortocde CSS
+ *
+ * @return void
+ */
+function register_quizzo_shortcode_css() {
 	wp_enqueue_script(
 		PLUGIN_SLUG,
-		plugin_dir_url( __DIR__ ) . './assets/js/dist/quizzo.js',
+		plugin_dir_url( __DIR__ ) . './assets/js/dist/quizzo-shortcode.js',
 		array('jquery')
 	);
 
 	wp_enqueue_style(
 		PLUGIN_SLUG,
-		plugin_dir_url( __DIR__ ) . './assets/css/dist/quizzo.css'
+		plugin_dir_url( __DIR__ ) . './assets/css/dist/quizzo-shortcode.css'
 	);
 
 	wp_enqueue_style(
@@ -49,12 +61,12 @@ function quizzo_rewrite_flush() {
 }
 
 /**
- * Publish Question Callback Method
+ * Housekeeping for Publish hooks
  *
  * @param int $post_id
  * @return void
  */
-function register_quizzo_save_meta_box( $post_id ) {
+function house_keeping( $post_id ) {
 	// Check if user has permissions to save data.
 	if ( ! current_user_can( 'edit_post', $post_id ) ) {
 		return;
@@ -69,18 +81,80 @@ function register_quizzo_save_meta_box( $post_id ) {
 	if ( wp_is_post_revision( $post_id ) ) {
 		return;
 	}
+}
+
+/**
+ * Publish Quiz Callback Method
+ *
+ * @param int $post_id
+ * @return void
+ */
+function register_quizzo_quiz_save_meta_box( $post_id ) {
+	// Housekeeping
+	house_keeping( $post_id );
 
 	// Update Quiz
+	update_post_meta( $post_id, 'quizzo_price', $_POST['quizzo_price'] );
+	update_post_meta( $post_id, 'quizzo_wc', $_POST['quizzo_wc'] );
+
+	// Get WC Product ID
+	$product_id = get_post_meta( $post_id, 'quizzo_wc_product', true );
+
+	// Check if product has ever existed before
+	if ( ! $product_id ) {
+
+		// Only perform this if WC is active
+		if ( class_exists( 'WooCommerce' ) ) {
+			// Insert new WC product
+			$product_id = wp_insert_post( array(
+				'post_title'  => esc_html( get_the_title( $post->ID ) ),
+				'post_type'   => 'product',
+				'post_status' => 'publish'
+			) );
+
+			$product = wc_get_product( $product_id );
+			$product->set_price( $_POST['quizzo_price'] );
+			$product->set_regular_price( $_POST['quizzo_price'] );
+			$product->save();
+
+			//Specify product type as Quizzo
+			wp_remove_object_terms( $product_id, 'simple', 'product_type' );
+			wp_set_object_terms( $product_id, 'quizzo', 'product_type' );
+
+			//Finally save WC product ID
+			update_post_meta( $post_id, 'quizzo_wc_product', $product_id );
+		}
+	} else {
+		// Only perform this if WC is active
+		if ( class_exists( 'WooCommerce' ) ) {
+			$product = wc_get_product( $product_id );
+			$product->set_price( $_POST['quizzo_price'] );
+			$product->set_regular_price( $_POST['quizzo_price'] );
+			$product->set_name( esc_html( get_the_title( $post_id ) ) );
+			$product->save();
+		}
+	}
+}
+
+/**
+ * Publish Question Callback Method
+ *
+ * @param int $post_id
+ * @return void
+ */
+function register_quizzo_question_save_meta_box( $post_id ) {
+	// Housekeeping
+	house_keeping( $post_id );
+
+	// Update Question
 	update_post_meta( $post_id, 'quizzo_quiz_id', $_POST['quizzo_quiz_id'] );
+	update_post_meta( $post_id, 'quizzo_answer', $_POST['quizzo_answer'] );
 
 	// Update Options
 	update_post_meta( $post_id, 'quizzo_option_1', $_POST['quizzo_option_1'] );
 	update_post_meta( $post_id, 'quizzo_option_2', $_POST['quizzo_option_2'] );
 	update_post_meta( $post_id, 'quizzo_option_3', $_POST['quizzo_option_3'] );
 	update_post_meta( $post_id, 'quizzo_option_4', $_POST['quizzo_option_4'] );
-
-	// Update Answer
-	update_post_meta( $post_id, 'quizzo_answer', $_POST['quizzo_answer'] );
 }
 
 /**
