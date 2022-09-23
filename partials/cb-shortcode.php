@@ -1,11 +1,8 @@
 <?php
 
-// Options
-$question_options = array(1 => 'A', 2 => 'B', 3 => 'C', 4 => 'D');
-
-// If not set, start with first question
 $question_counter = $_SESSION['question_counter'] ?: 0;
-$question_id = $_SESSION['questions_ids'][$question_counter];
+$question_id      = $_SESSION['questions_ids'][$question_counter];
+$question_options = array(1 => 'A', 2 => 'B', 3 => 'C', 4 => 'D');
 
 ?>
 
@@ -31,9 +28,17 @@ $question_id = $_SESSION['questions_ids'][$question_counter];
 
 		<?php else: ?>
 
-		<h2>Quiz Completed!<br/>Your total score is 38%.</h2>
+		<h2>Quiz Completed!<br/>Your total score is
+			<span id="score"><?php echo $_SESSION['percentage']; ?></span>%.
+		</h2>
 		<a href="<?php echo home_url(); ?>">Close Quiz Window</a>
-		<?php $_SESSION['question_counter'] = ''; ?>
+		<?php
+			// Clean up Session variables
+			$_SESSION['quiz_id']          = '';
+			$_SESSION['questions_ids']    = '';
+			$_SESSION['question_counter'] = '';
+			$_SESSION['percentage'] = 0;
+		?>
 
 		<?php endif; ?>
 	</div>
