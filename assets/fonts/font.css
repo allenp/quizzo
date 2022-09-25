@@ -10,3 +10,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Product Sans';
+  src: url('ProductSans-Bold.eot');
+  src: url('ProductSans-Bold.eot?#iefix') format('embedded-opentype'),
+       url('ProductSans-Bold.svg#ProductSans-Bold') format('svg'),
+       url('ProductSans-Bold.ttf') format('truetype'),
+       url('ProductSans-Bold.woff') format('woff'),
+       url('ProductSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
