@@ -1,56 +1,97 @@
 .quizzo {
-	background: #fff;
+	background: #fff !important;
 	position: fixed;
 	top: 0; left: 0; bottom: 0; right: 0;
 	height: 100vh;
 	padding: 40px 40px 40px 190px;
+	font-family: 'Inter', Arial;
+	letter-spacing: -0.5px;
 
-	h1 {
-		font-size: 42px;
+	p, ul li {
+		margin-top: 0;
+		font-size: 16px;
 	}
 
-	p {
-		font-size: 18px;
-		font-weight: 350;
-	}
-
-	& &_column {
-		display: flex;
-		justify-content: flex-start;
-		gap: 25px;
-	}
-
-	& &_card {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 100px 0;
-		width: calc(25% - 25px);
-		border-radius: 20px;
-		box-shadow: 0 10px 25px rgba(51, 51, 51, 0.1);
-		flex-direction: column;
-
-		h2 {
-			font-size: 32px;
-			margin-bottom: 0;
+	header {
+		h1 {
+			font-size: 36px;
+			color: rebeccapurple;
 		}
 
-		&_notes {
-			width: calc(25% - 25px);
-			padding: 0 40px;
+		p {
+			margin-bottom: 0.5em;
+		}
 
-			h2 {
-				font-size: 24px;
+		span {
+			display: inline-block;
+			margin-right: 10px;
+		}
+	}
+
+	main {
+		h2 {
+			font-size: 22px;
+			margin-bottom: 20px;
+			margin-top: 35px;
+			color: rebeccapurple;
+		}
+
+		> p {
+			width: 75%;
+
+			@media only screen and (max-width: 959px) {
+				width: 100%;
+			}
+		}
+
+		ul {
+			list-style-type: disc;
+			margin-left: 15px;
+			width: 50%;
+		}
+
+		ul li {
+			margin-bottom: 25px;
+			line-height: 1.4;
+		}
+	}
+
+	.columns {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+
+		> div {
+			width: calc(25% - 4em);
+			text-align: center;
+			padding: 2.5em 2em 0 2em;
+
+			h3 {
+				margin-top: 50px;
+				margin-bottom: 0.75em;
+				font-size: 12px;
+				font-weight: 500;
+				color: rebeccapurple;
+				text-transform: uppercase;
+				letter-spacing: 0;
+
+				+ p {
+					line-height: 1.7;
+				}
 			}
 
-			ul {
-				list-style-type: disc;
-				font-size: 18px;
-				margin-left: 1em;
+			span {
+				font-size: 48px;
+				margin-left: -20px;
+				color: rebeccapurple;
+			}
 
-				li {
-					margin-bottom: 1em;
-				}
+			@media only screen and (max-width: 959px) {
+				width: calc(50% - 4em);
+			}
+
+			@media only screen and (max-width: 782px) {
+				width: calc(100% - 4em);
 			}
 		}
 	}
@@ -82,13 +123,34 @@
 		}
 	}
 
-	&_select,
-	&_textfield {
-		width: 100%;
-		margin-top: 5px;
+	#get-started {
+		margin-top: 60px;
+
+		a {
+			border-radius: 100px;
+			background: rebeccapurple;
+			text-decoration: none;
+			padding: 1em 3em;
+			color: #FFF;
+		}
+
+		@media only screen and (max-width: 782px) {
+			text-align: center;
+			margin-top: 30px;
+		}
 	}
 
 	@media only screen and (max-width: 959px) {
 		padding: 40px 40px 40px 70px;
+		overflow-y: scroll;
+		height: auto;
 	}
+
+	@media only screen and (max-width: 782px) {
+		padding: 70px 20px;
+	}
+}
+
+a.page-title-action[href$=question] {
+	display: none;
 }
