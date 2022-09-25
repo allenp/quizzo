@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Product Sans';
+  src: url('ProductSans-Regular.eot');
+  src: url('ProductSans-Regular.eot?#iefix') format('embedded-opentype'),
+       url('ProductSans-Regular.svg#ProductSans-Regular') format('svg'),
+       url('ProductSans-Regular.ttf') format('truetype'),
+       url('ProductSans-Regular.woff') format('woff'),
+       url('ProductSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
