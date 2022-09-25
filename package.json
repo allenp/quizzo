@@ -4,6 +4,7 @@
   "description": "A simple plugin to help you set up WP Quizzes behind a PayWall.",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "gulp compile",
     "watch": "gulp watch"
   },
