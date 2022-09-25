@@ -152,5 +152,5 @@
 }
 
 a.page-title-action[href$=question] {
-	display: none;
+	display: none !important;
 }
