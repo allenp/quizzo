@@ -34,3 +34,4 @@ const observe = () => {
 
 exports.sass = compile;
 exports.watch = observe;
+exports.default = observe;
