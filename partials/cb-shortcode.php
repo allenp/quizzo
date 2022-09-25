@@ -1,16 +1,31 @@
 <?php
 
+// Get Question info
 $question_counter = $_SESSION['question_counter'] ?: 0;
 $question_id      = $_SESSION['questions_ids'][$question_counter];
 $question_options = array(1 => 'A', 2 => 'B', 3 => 'C', 4 => 'D');
+
+// Get User info
+$current_user = wp_get_current_user();
+$user_name    = $current_user->display_name ?: $current_user->first_name;
+$user_email   = $current_user->user_email;
 
 ?>
 
 <section class="quizzo_shortcode" id="<?php echo $question_id; ?>">
 	<div>
-		<div id="status">You haven't picked an answer yet...</div>
+		<div id="user">
+			<p>
+				<?php echo esc_html( get_the_title( $_SESSION['quiz_id'] ) ); ?><br/>
+				<?php echo esc_html( $user_name ); ?> @ <?php echo date("D j F, Y O T"); ?><br/>
+				(<?php echo esc_html( $user_email ); ?>)
+			</p>
+		</div>
+		<div id="status"></div>
 
 		<?php if ( $_SESSION['question_counter'] < count( $_SESSION['questions_ids'] ) ) : ?>
+
+		<div id="timer">20s</div>
 
 		<div id="question">
 			<h2><?php echo esc_html( get_the_title( $question_id ) ); ?></h2>
@@ -24,12 +39,12 @@ $question_options = array(1 => 'A', 2 => 'B', 3 => 'C', 4 => 'D');
 			</ol>
 			<span id="overlay"></span>
 		</div>
-		<button type="button" id="answer">Submit Answer</button>
+		<button type="button" id="answer">Answer Question</button>
 
 		<?php else: ?>
 
 		<h2>Quiz Completed!<br/>Your total score is
-			<span id="score"><?php echo $_SESSION['percentage']; ?></span>%.
+			<span id="score"><?php echo esc_html( $_SESSION['percentage'] ?: 0 ); ?></span>%.
 		</h2>
 		<a href="<?php echo home_url(); ?>">Close Quiz Window</a>
 		<?php
