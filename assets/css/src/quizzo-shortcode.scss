@@ -12,6 +12,7 @@
 		font-family: 'Product Sans', Arial;
 		font-size: 20px;
 		z-index: 5000;
+		letter-spacing: 0;
 
 		#question {
 			position: relative;
@@ -56,7 +57,7 @@
 			color: #fff;
 			font-size: 24px;
 			text-align: center;
-			margin-bottom: 2em;
+			margin-bottom: 40px;
 			border-radius: 100px;
 			font-weight: 700;
 			display: none;
@@ -81,14 +82,13 @@
 			color: rebeccapurple;
 			width: 75%;
 			margin: 0 auto;
-			margin-bottom: 1.5em;
+			margin-bottom: 60px;
 			z-index: 10;
 			position: relative;
 			line-height: 1.6;
 			font-size: 30px;
 			font-weight: 700;
 			font-family: 'Product Sans', Arial;
-			letter-spacing: -1px;
 		}
 
 		ol {
@@ -97,12 +97,12 @@
 			flex-wrap: wrap;
 			list-style-type: none;
 			margin: 0; padding: 0;
-			margin-bottom: 2em;
+			margin-bottom: 30px;
 		}
 
 		ol > li {
 			width: calc(50% - 25px);
-			margin-bottom: 2em;
+			margin-bottom: 60px;
 			position: relative;
 		}
 
