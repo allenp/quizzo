@@ -12,6 +12,11 @@ function register_quizzo_admin_css() {
 		PLUGIN_SLUG,
 		plugin_dir_url( __DIR__ ) . './assets/css/dist/quizzo-admin.css'
 	);
+
+	wp_enqueue_style(
+		'plugin',
+		plugin_dir_url( __DIR__ ) . './assets/fonts/font.css'
+	);
 }
 
 /**
@@ -32,8 +37,8 @@ function register_quizzo_shortcode_css() {
 	);
 
 	wp_enqueue_style(
-		'Nunito',
-		'https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap'
+		'plugin',
+		plugin_dir_url( __DIR__ ) . './assets/fonts/font.css'
 	);
 }
 
