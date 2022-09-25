@@ -1,12 +1,13 @@
 jQuery(document).ready(function ($) {
-
-	$('.quizzo_shortcode input[type="radio"]').click(function () {
-		//console.log($(this).val());
-	})
-
+	// User answered question
 	$('.quizzo_shortcode #answer').click(function () {
-		// Check to see if button has been clicked before
-		if ($(this).text() == 'Continue') location.reload();
+		// Go to next question if button has changed
+		if ($(this).text() == 'Continue') {
+			location.reload(); return;
+		}
+
+		// Pause the timer
+		$('.quizzo_shortcode #timer').attr('id', '');
 
 		// Get answerID
 		let questionID = $('.quizzo_shortcode').attr('id');
@@ -23,37 +24,43 @@ jQuery(document).ready(function ($) {
 				answer_id: answerID
 			},
 			success: function (msg) {
+				console.log(msg.total);
+
 				// Display feedback
-				$('.quizzo_shortcode #status').slideDown('fast', 'swing');
+				$('.quizzo_shortcode #status').slideDown('fast');
 
 				// Disable question
 				$('.quizzo_shortcode #overlay').fadeIn('fast');
 
+				// Change button
+				$('.quizzo_shortcode #answer').text('Continue');
+
 				// Grab correct answer
-				let answer = {
-					1: 'A',
-					2: 'B',
-					3: 'C',
-					4: 'D'
-				}
+				let answer = {1: 'A', 2: 'B', 3: 'C', 4: 'D'}
 
 				// Display message
 				if (parseInt(msg.status)) {
-					$('.quizzo_shortcode #status').html('<span class= "dashicons dashicons-yes"></span>Congratulations! You got the question right...');
+					$('.quizzo_shortcode #status').html('<span class= "dashicons dashicons-yes"></span>Congratulations! You got the answer right. Keep going, you\'re doing great...');
 					$('.quizzo_shortcode #status').css('background-color', 'rebeccapurple');
 				} else {
-					$('.quizzo_shortcode #status').html('<span class= "dashicons dashicons-no-alt"></span>The correct answer is ' + answer[msg.question]);
+					$('.quizzo_shortcode #status').html('<span class= "dashicons dashicons-no-alt"></span>The correct answer is ' + answer[msg.answer]);
 					$('.quizzo_shortcode #status').css({
 						'background-color': 'red',
 					});
 				}
-
-				// Change button
-				$('.quizzo_shortcode #answer').text('Continue');
 			}
 		});
 
 	})
+	// Start Timer
+	let counter = 20;
+	setInterval(function () {
+		// Reduce counter and change time
+		counter = counter ? counter : 60; counter--;
+		$('.quizzo_shortcode #timer').text(counter + 's');
 
+		// End question session on 0s
+		if (!counter) $('.quizzo_shortcode #answer').trigger('click');
+	}, 1000);
 })
 
