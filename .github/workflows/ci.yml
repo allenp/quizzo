@@ -1,0 +1,5 @@
+name: Quizzo
+
+on:
+  push:
+    branches: [ "master" ]
