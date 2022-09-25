@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Product Sans';
+  font-family: 'Quizzo';
   src: url('ProductSans-Regular.eot');
   src: url('ProductSans-Regular.eot?#iefix') format('embedded-opentype'),
        url('ProductSans-Regular.svg#ProductSans-Regular') format('svg'),
@@ -11,7 +11,7 @@
 }
 
 @font-face {
-  font-family: 'Product Sans';
+  font-family: 'Quizzo';
   src: url('ProductSans-Bold.eot');
   src: url('ProductSans-Bold.eot?#iefix') format('embedded-opentype'),
        url('ProductSans-Bold.svg#ProductSans-Bold') format('svg'),
@@ -21,3 +21,4 @@
   font-weight: 700;
   font-style: normal;
 }
+
