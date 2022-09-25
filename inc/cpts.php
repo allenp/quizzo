@@ -44,7 +44,7 @@ function register_quizzo_cpts() {
 			'has_archive'  => true,
 			'show_in_menu' => PLUGIN_SLUG,
 			'supports'     => array( 'title', 'thumbnail' ),
-			'taxonomies'   => array( 'category' ),
+			//'taxonomies'   => array( 'category' ),
 			'show_in_rest' => false,
 		)
 	);
@@ -66,6 +66,10 @@ function register_quizzo_cpts() {
 			'show_in_menu' => PLUGIN_SLUG,
 			'supports'     => array( 'title', 'thumbnail' ),
 			'show_in_rest' => false,
+			'capabilities' => array(
+				'create_posts' => false
+			),
+			'map_meta_cap' => true,
 		)
 	);
 }
