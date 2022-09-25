@@ -12,7 +12,7 @@
 
 <p>
 	<strong>User's Total Score:</strong><br/>
-	<?php echo esc_html( $scores_metadata['score_total'][0] ); ?>
+	<?php echo esc_html( $scores_metadata['score_total'][0] ?: 0 ); ?>
 </p>
 
 <p>
