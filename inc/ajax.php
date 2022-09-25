@@ -37,7 +37,7 @@ function save_user_answer() {
 		update_post_meta( $score_id, 'score_total_questions', count( $_SESSION['questions_ids'] ) );
 
 		// Save to score_id, if its the first time
-		$_SESSION['score_id'] = $score_id;
+		$_SESSION['score_id']   = $score_id;
 	}
 
 	// Save Question Status (Right or Wrong) depending on user answer
@@ -46,9 +46,9 @@ function save_user_answer() {
 	// Save User's exact answer - A, B, C, D
 	update_post_meta( $_SESSION['score_id'], 'score_answer_' . $question_id, $answer_id );
 
-	//Update total score
+	// Update total score based on correct answers
+	$total = get_post_meta( $_SESSION['score_id'], 'score_total', true ) ?: 0;
 	if ( $compare ) {
-		$total = get_post_meta( $_SESSION['score_id'], 'score_total', true );
 		$total = $total + 1;
 		update_post_meta( $_SESSION['score_id'], 'score_total', $total );
 	}
@@ -64,13 +64,13 @@ function save_user_answer() {
 	}
 
 	// Get percentage score
-	$correct_questions = get_post_meta( $_SESSION['score_id'], 'score_total', true );
-	$total_number_of_questions = get_post_meta( $_SESSION['score_id'], 'score_total_questions', true );
-	$_SESSION['percentage'] = number_format( ( $correct_questions / $total_number_of_questions ) * 100, 2);
+	$total_questions        = get_post_meta( $_SESSION['score_id'], 'score_total_questions', true ) ?: 0;
+	$correct_questions      = get_post_meta( $_SESSION['score_id'], 'score_total', true ) ?: 0;
+	$_SESSION['percentage'] = number_format( ( $correct_questions / $total_questions ) * 100, 0);
 
 	// Prepare result
-	$result['status']   = $compare;
-	$result['question'] = $answer;
+	$result['status'] = $compare;
+	$result['answer'] = $answer;
 
 	// Encode and send
 	$result = json_encode($result);
