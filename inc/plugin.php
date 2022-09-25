@@ -14,6 +14,11 @@ function register_quizzo_admin_css() {
 	);
 
 	wp_enqueue_style(
+		'Inter',
+		'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap'
+	);
+
+	wp_enqueue_style(
 		'plugin',
 		plugin_dir_url( __DIR__ ) . './assets/fonts/font.css'
 	);
