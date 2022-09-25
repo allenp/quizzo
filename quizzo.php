@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Quizzo
  * Plugin URI:  https://github.com/chigozieorunta/quizzo
- * Description: A simple plugin to help you set up Quizzes behind a PayWall.
+ * Description: A simple plugin to help you set up Quizzes behind a Woocommerce (WC) PayWall.
  * Version:     1.0.0
  * Author:      Chigozie Orunta
  * Author URI:  https://chigozieorunta.com
@@ -45,7 +45,11 @@ add_action( 'publish_quiz', __NAMESPACE__ . '\register_quizzo_quiz_save_meta_box
 add_action( 'publish_question', __NAMESPACE__ . '\register_quizzo_question_save_meta_box' );
 
 add_filter( 'manage_quiz_posts_columns', __NAMESPACE__ . '\register_quiz_columns' );
-add_action( 'manage_quiz_posts_custom_column' , __NAMESPACE__ . '\register_quiz_questions_column', 10, 2 );
+add_action( 'manage_quiz_posts_custom_column' , __NAMESPACE__ . '\register_quiz_column_data', 10, 2 );
+add_filter( 'manage_score_posts_columns', __NAMESPACE__ . '\register_score_columns' );
+add_action( 'manage_score_posts_custom_column' , __NAMESPACE__ . '\register_score_column_data', 10, 2 );
+add_filter( 'manage_question_posts_columns', __NAMESPACE__ . '\register_question_columns' );
+add_action( 'manage_question_posts_custom_column' , __NAMESPACE__ . '\register_question_column_data', 10, 2 );
 
 add_action( 'wp_ajax_nopriv_save_user_answer', __NAMESPACE__ . '\save_user_answer' );
 add_action( 'wp_ajax_save_user_answer', __NAMESPACE__ . '\save_user_answer' );
