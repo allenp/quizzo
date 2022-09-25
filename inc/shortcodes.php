@@ -51,7 +51,13 @@ function get_questions_ids( $id ) {
 	return wp_list_pluck( $questions, 'ID' );
 }
 
-
+/**
+ * Shortcode Callback Template
+ *
+ * @param int $quiz_id
+ * @param array $questions_ids
+ * @return void
+ */
 function get_shortcode( $quiz_id, $questions_ids ) {
 	// Don't display, if no questions are available
 	if ( ! count( $questions_ids ) ) return '';
@@ -61,12 +67,14 @@ function get_shortcode( $quiz_id, $questions_ids ) {
 		$_SESSION['quiz_id']          = $quiz_id;
 		$_SESSION['questions_ids']    = $questions_ids;
 		$_SESSION['question_counter'] = '';
+		$_SESSION['percentage']       = 0;
 	} else {
 		// If the user has switched to a different test
 		if ( $_SESSION['questions_ids'] !== $questions_ids ) {
 			$_SESSION['quiz_id']          = $quiz_id;
 			$_SESSION['questions_ids']    = $questions_ids;
 			$_SESSION['question_counter'] = '';
+			$_SESSION['percentage']       = 0;
 		}
 	}
 
