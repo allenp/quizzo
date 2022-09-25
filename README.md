@@ -1,6 +1,16 @@
 # Quizzo
 
-A simple plugin to help you set up WP Quizzes behind a PayWall.
+A simple plugin to help you set up WP Quizzes behind a WooCommerce PayWall.
+
+## Features
+
+- Easy set up for Quizzes, Questions and Answers.
+- Each new quiz utilizes the WooCommerce API to create a special Quizzo product type alongside its price, this means you can now sell your Quiz, if you wish to.
+- WooCommerce (WC) paywall implementation for each Quiz, if required.
+- Score module capturing for each Quiz session.
+- Step-by-Step page feature for Quiz question.
+- Timer/Counter feature for each Quiz question.
+- Meta Data capturing for Quizzes, Questions and Answers.
 
 ## Requirements
 
