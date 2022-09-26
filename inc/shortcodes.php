@@ -22,7 +22,7 @@ function quizzo_shortcode( $atts ) {
 
 		// Check to see it is purchased
 		if ( ! is_quiz_purchased( $prod_arr ) ) {
-			return '<center>You have not paid for this Quiz. <a href="' . $url = get_permalink( $product_id ) . '">Pay Here</a></center>' ;
+			return '<center>Pay for this amazing Quiz and get access to MCQs... <a href="' . $url = get_permalink( $product_id ) . '">Pay Here</a></center>' ;
 		}
 	}
 
