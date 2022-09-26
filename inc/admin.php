@@ -72,11 +72,11 @@ function register_quiz_column_data( $column, $post_id ) {
 	switch ( $column ) {
 		case 'questions' :
 			echo count( get_posts( array(
-						'post_type'      => 'question',
-						'post_status'    => 'publish',
-						'posts_per_page' => -1,
-						'meta_key'       => 'quizzo_quiz_id',
-						'meta_value'     => $post_id,
+				'post_type'      => 'question',
+				'post_status'    => 'publish',
+				'posts_per_page' => -1,
+				'meta_key'       => 'quizzo_quiz_id',
+				'meta_value'     => $post_id,
 			) ) );
 			break;
 
