@@ -23,11 +23,11 @@ function save_user_answer() {
 	// Check if a score ID has been created
 	if ( ! $_SESSION['question_counter'] ) {
 		// Save Score
-        $score_id = wp_insert_post( array(
-            'post_type'   => 'score',
-            'post_status' => 'publish',
-            'post_title'  =>  $user . ' - ' . get_the_title( $_SESSION['quiz_id'] )
-        ) );
+		$score_id = wp_insert_post( array(
+			'post_type'   => 'score',
+			'post_status' => 'publish',
+			'post_title'  =>  $user . ' - ' . get_the_title( $_SESSION['quiz_id'] )
+		) );
 
 		// Save important details for scores
 		update_post_meta( $score_id, 'score_quiz_id', $_SESSION['quiz_id'] );
