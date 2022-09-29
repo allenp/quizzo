@@ -5,11 +5,11 @@
 		align-items: center;
 		position: fixed;
 		top: 0; right: 0; bottom: 0; left: 0;
-		width: 100% !important;
-		max-width: 100% !important;
-		padding: 0 !important;
-		margin: 0 !important;
-		font-family: 'Quizzo', Arial !important;
+		width: 100%;
+		max-width: 100%;
+		padding: 0;
+		margin: 0;
+		font-family: 'Quizzo', Arial;
 		font-size: 20px;
 		z-index: 5000;
 		letter-spacing: 0;
@@ -126,7 +126,6 @@
 			flex-wrap: wrap;
 			list-style-type: none;
 			margin: 0; padding: 0;
-			margin-bottom: 0;
 		}
 
 		ol > li {
@@ -150,12 +149,12 @@
 			transition: all 0.6s;
 			outline: none;
 			height: 100%; width: 100%;
-			border: none !important;
-			background: transparent !important;
+			border: none;
+			background: transparent;
 
 			:before, :after {
-				appearance: none !important;
-				display: none !important;
+				appearance: none;
+				display: none;
 			}
 		}
 
@@ -170,8 +169,8 @@
 			cursor: pointer;
 			background: #DEF;
 			display: block;
-			margin: 0 !important;
-			font-family: 'Quizzo', Arial !important;
+			margin: 0;
+			font-family: 'Quizzo', Arial;
 
 			span {
 				float: left;
@@ -186,18 +185,18 @@
 		}
 
 		a, button {
-			background: rebeccapurple !important;
+			background: rebeccapurple;
 			padding: 25px 60px;
 			border: none;
 			border-radius: 25px;
 			font-family: inherit;
 			font-weight: 400;
 			font-size: 20px;
-			color: #fff !important;
+			color: #fff;
 			cursor: pointer;
 			margin: 20px auto 0;
 			display: inline-block;
-			text-decoration: none !important;
+			text-decoration: none;
 			position: relative;
 			z-index: 10;
 			text-transform: capitalize;
@@ -243,7 +242,7 @@
 		@media only screen and (max-width: 986px) {
 			height: auto;
 			overflow-y: scroll;
-			padding: 5em 0 !important;
+			padding: 2em 0;
 			display: block;
 		}
 	}

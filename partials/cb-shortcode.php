@@ -39,7 +39,7 @@ $user_email   = $current_user->user_email;
 			</ol>
 			<span id="overlay"></span>
 		</div>
-		<button type="button" id="answer">Answer Question</button>
+		<button type="button" id="answer">Check My Answer</button>
 
 		<?php else: ?>
 
