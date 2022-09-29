@@ -95,18 +95,23 @@
 			}
 		}
 
-		h2 {
-			text-align: center;
+		.question_content {
+			text-align: left;
 			color: rebeccapurple;
 			width: 100%;
 			margin: 0 auto;
 			margin-bottom: 60px !important;
 			z-index: 10;
 			position: relative;
-			line-height: 1.6;
-			font-size: 30px;
-			font-weight: 700;
+			font-size: 24px;
+			font-weight: 400;
 			font-family: 'Quizzo', Arial !important;
+
+		    .counter {
+			  padding-right: 10px;
+			  padding-bottom: 10px;
+			  font-weight: bold;
+			}
 
 			@media only screen and (max-width: 986px) {
 				margin-bottom: 30px;
@@ -126,17 +131,17 @@
 
 		ol > li {
 			width: calc(50% - 25px);
-			margin-bottom: 60px;
+			margin-bottom: 20px;
 			position: relative;
 
 			@media only screen and (max-width: 986px) {
 				width: 100%;
-				margin-bottom: 30px;
+				margin-bottom: 15px;
 			}
 		}
 
 		ol > li > input[type="radio"] {
-			appearance: none !important;
+			appearance: none;
 			border-radius: 100px;
 			position: absolute;
 			left: 0; right: 0;
@@ -157,9 +162,9 @@
 		ol > li > p {
 			padding: 1em 2em;
 			transition: all 0.2s;
-			text-align: center;
+			text-align: left;
 			font-weight: 400;
-			border-radius: 100px;
+			border-radius: 25px;
 			color: #036;
 			line-height: 1.6;
 			cursor: pointer;
@@ -170,7 +175,8 @@
 
 			span {
 				float: left;
-				margin-left: -10px;
+			    font-weight: bold;
+			    padding-right: 10px
 			}
 		}
 
@@ -183,13 +189,13 @@
 			background: rebeccapurple !important;
 			padding: 25px 60px;
 			border: none;
-			border-radius: 100px;
+			border-radius: 25px;
 			font-family: inherit;
 			font-weight: 400;
 			font-size: 20px;
 			color: #fff !important;
 			cursor: pointer;
-			margin: 0 auto !important;
+			margin: 20px auto 0;
 			display: inline-block;
 			text-decoration: none !important;
 			position: relative;
