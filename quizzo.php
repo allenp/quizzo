@@ -32,6 +32,7 @@ foreach( glob( __DIR__ . "/inc/*.php" ) as $file ) {
 add_action( 'init', 'register_quizzo_product_type' );
 add_filter( 'product_type_selector', 'add_quizzo_product_type' );
 add_action( 'woocommerce_quizzo_add_to_cart', 'add_to_cart_button' );
+add_action( 'woocommerce_email_order_details', __NAMESPACE__ . '\attach_quizzo_link_to_wc_email', 10, 4 );
 
 add_action( 'init', __NAMESPACE__ . '\register_quizzo_cpts' );
 add_action( 'init', __NAMESPACE__ . '\register_user_session' );
