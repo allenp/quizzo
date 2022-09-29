@@ -7,7 +7,7 @@ jQuery(document).ready(function ($) {
 		}
 
 		// Pause the timer
-		$('.quizzo_shortcode #timer').attr('id', '');
+		/*$('.quizzo_shortcode #timer').attr('id', '');*/
 
 		// Get answerID
 		let questionID = $('.quizzo_shortcode').attr('id');
@@ -53,7 +53,7 @@ jQuery(document).ready(function ($) {
 
 	})
 	// Start Timer
-	let counter = 20;
+	/*let counter = 20;
 	setInterval(function () {
 		// Reduce counter and change time
 		counter = counter ? counter : 60; counter--;
@@ -61,6 +61,6 @@ jQuery(document).ready(function ($) {
 
 		// End question session on 0s
 		if (!counter) $('.quizzo_shortcode #answer').trigger('click');
-	}, 1000);
+	}, 1000);*/
 })
 
