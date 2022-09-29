@@ -65,12 +65,12 @@
 			position: relative;
 			z-index: 10;
 			padding: 1em 2em;
-			background: rebeccapurple;
+			background-color: rgb(51, 153, 69);
 			color: #fff;
 			font-size: 24px;
 			text-align: center;
 			margin-bottom: 0px;
-			border-radius: 100px;
+			border-radius: 25px;
 			font-weight: 700;
 			display: none;
 			/*transition: all 0.3s;*/
@@ -99,24 +99,17 @@
 			text-align: left;
 			color: rebeccapurple;
 			width: 100%;
-			margin: 0 auto;
-			margin-bottom: 60px !important;
+			margin: 0 auto 25px auto;
 			z-index: 10;
 			position: relative;
 			font-size: 24px;
 			font-weight: 400;
-			font-family: 'Quizzo', Arial !important;
+			font-family: 'Quizzo', Arial;
 
 		    .counter {
 			  padding-right: 10px;
 			  padding-bottom: 10px;
 			  font-weight: bold;
-			}
-
-			@media only screen and (max-width: 986px) {
-				margin-bottom: 30px;
-				width: 100%;
-				font-size: 24px;
 			}
 		}
 
@@ -125,7 +118,8 @@
 			justify-content: space-between;
 			flex-wrap: wrap;
 			list-style-type: none;
-			margin: 0; padding: 0;
+			margin: 0 0 20px 0;
+		    padding: 0;
 		}
 
 		ol > li {

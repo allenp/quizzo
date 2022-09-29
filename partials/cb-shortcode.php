@@ -21,7 +21,6 @@ $user_email   = $current_user->user_email;
 				(<?php echo esc_html( $user_email ); ?>)-->
 			</p>
 		</div>
-		<div id="status"></div>
 
 		<?php if ( $_SESSION['question_counter'] < count( $_SESSION['questions_ids'] ) ) : ?>
 
@@ -39,6 +38,7 @@ $user_email   = $current_user->user_email;
 			</ol>
 			<span id="overlay"></span>
 		</div>
+		<div id="status"></div>
 		<button type="button" id="answer">Check My Answer</button>
 
 		<?php else: ?>

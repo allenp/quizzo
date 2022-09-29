@@ -40,10 +40,10 @@ jQuery(document).ready(function ($) {
 
 				// Display message
 				if (parseInt(msg.status)) {
-					$('.quizzo_shortcode #status').html('<span class= "dashicons dashicons-yes"></span>Congratulations! You got the answer right. Keep going, you\'re doing great...');
-					$('.quizzo_shortcode #status').css('background-color', 'rebeccapurple');
+					$('.quizzo_shortcode #status').html('<span class="dashicons dashicons-yes"></span>That\'s correct!. ');
+					$('.quizzo_shortcode #status').css('background-color', 'rgb(51, 153, 69)');
 				} else {
-					$('.quizzo_shortcode #status').html('<span class= "dashicons dashicons-no-alt"></span>The correct answer is ' + answer[msg.answer]);
+					$('.quizzo_shortcode #status').html('<span class="dashicons dashicons-no-alt"></span>The correct answer is ' + answer[msg.answer]);
 					$('.quizzo_shortcode #status').css({
 						'background-color': 'red',
 					});
