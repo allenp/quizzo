@@ -25,7 +25,7 @@ $user_email   = $current_user->user_email;
 
 		<?php if ( $_SESSION['question_counter'] < count( $_SESSION['questions_ids'] ) ) : ?>
 
-		<div id="timer">20s</div>
+		<!--<div id="timer">20s</div>-->
 
 		<div id="question">
 			<h2><?php echo esc_html( get_the_title( $question_id ) ); ?></h2>
