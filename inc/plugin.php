@@ -133,6 +133,9 @@ function register_quizzo_quiz_save_meta_box( $post_id ) {
 
 			//Finally save WC product ID
 			update_post_meta( $post_id, 'quizzo_wc_product', $product_id );
+
+			// Save Quiz ID to product
+			update_post_meta( $product_id, 'quizzo_id', $post_id );
 		}
 	} else {
 		// Only perform this if WC is active
@@ -143,6 +146,9 @@ function register_quizzo_quiz_save_meta_box( $post_id ) {
 			$product->set_name( esc_html( get_the_title( $post_id ) ) );
 			$product->save();
 		}
+
+		// Save Quiz ID to product
+		update_post_meta( $product_id, 'quizzo_id', $post_id );
 	}
 }
 
